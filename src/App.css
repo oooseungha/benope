@@ -1,0 +1,30 @@
+.App {
+  /* text-align: center; */
+}
+
+
+/* @@@@ command @@@@ */
+/* font-family: "Jua", sans-serif; */
+/* #FC4C02 */
+
+
+
+/* @@@@ reset @@@@ */
+* {margin: 0; padding: 0;}
+ul, ol, li {list-style: none;}
+a {
+  text-decoration: none !important;
+  color: #1a1a1a !important;
+}
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+body, html {
+  background-color: #fafaf8 !important;
+  font-family: "Noto Sans KR", sans-serif !important;
+  color: #1a1a1a !important;
+  margin: 0 !important;
+  letter-spacing: -1px !important;
+}
