@@ -2,8 +2,21 @@
 import React, { useState, useEffect } from 'react';
 
 
-// ------------------------ 외부 라이브러리
+// ------------------------ Styled-Components
 import styled from 'styled-components';
+
+const TimerBox = styled.div `
+  width: 300px; height: 40px;
+  margin: 0 auto;
+  background-color: #FC4C02;
+  color: #fafaf8;
+  font-family: "Jua", sans-serif;
+  font-size: 24px;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 10px;
+`
+
 
 
 export default function Timer({ saleTime }) {
@@ -32,20 +45,6 @@ export default function Timer({ saleTime }) {
     }, 1000);
     return () => clearInterval(timer);
   }, [saleTime]);
-
-  
-  // @@@@ styled-components @@@@
-  const TimerBox = styled.div `
-    width: 300px; height: 40px;
-    margin: 0 auto;
-    background-color: #FC4C02;
-    color: #fafaf8;
-    font-family: "Jua", sans-serif;
-    font-size: 24px;
-    text-align: center;
-    line-height: 45px;
-    border-radius: 10px;
-  `
 
 
   return (

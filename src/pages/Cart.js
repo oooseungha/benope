@@ -8,10 +8,64 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItem, deleteItem, addCount, subCount } from '../redux/cartSlice';
 
 
-// ------------------------ 외부 라이브러리
+// ------------------------ Styled-Components
 import styled from 'styled-components';
 import { TitleDiv, ArrowLeft, ArrowRight } from '../components/StyledComponent.js'
 
+const Wrap = styled.div`
+  width: 1048px;
+  margin: 100px auto 200px auto;
+`
+
+const Table = styled.table`
+  width: 1048px;
+  text-align: center;
+  th {
+    padding: 20px;
+    background-color: #FFD6C5;
+    font-size: 17px;
+  }
+  tr {
+    &:hover {
+      background-color: #eee;
+    }
+  }
+  td {
+  }
+  .amount_box {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin: 0 1px;
+      font-weight: 500;
+      font-size: 20px;
+      width: 40px;
+      text-align: center;
+    }
+    
+  }
+  .total_box td {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    background-color: #eee;
+  }
+`
+
+const DelBtn = styled.button`
+  display: block;
+  width: 70px; height: 40px;
+  margin: 0 auto;
+  border: none;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+`
 
 
 export default function Cart() {
@@ -20,66 +74,6 @@ export default function Cart() {
   const dispatch = useDispatch();
   const totalCount = state.cart.reduce((sum, item) => sum + item.count, 0)
   const totalPrice = state.cart.reduce((sum, item) => sum + item.price * item.count, 0)
-
-  const optionCount = useSelector((state) => state.counter.value);
-
-
-  // styled-components
-  const Wrap = styled.div`
-    width: 1048px;
-    margin: 100px auto 200px auto;
-  `
-
-  const Table = styled.table`
-    width: 1048px;
-    text-align: center;
-    border: 1px solid #ccc;
-
-    th {
-      padding: 20px;
-      background-color: #FFD6C5;
-      font-size: 17px;
-    }
-    tr {
-      &:hover {
-        background-color: #eee;
-      }
-    }
-    td {
-    }
-    .amount_box {
-      height: 120px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      p {
-        margin: 0 1px;
-        font-weight: 500;
-        font-size: 20px;
-        width: 40px;
-        text-align: center;
-      }
-      
-    }
-    .total_box td {
-      font-size: 18px;
-      font-weight: bold;
-      padding: 10px;
-      border: 1px solid #ccc;
-      background-color: #eee;
-    }
-  `
-
-  const DelBtn = styled.button`
-    display: block;
-    width: 70px; height: 40px;
-    margin: 0 auto;
-    border: none;
-    background-color: #333;
-    color: white;
-    border-radius: 5px;
-  `
-
 
   return (
     <Wrap>

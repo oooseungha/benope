@@ -7,9 +7,12 @@ import QnaModal from '../components/QnaModal.js';
 
 
 // ------------------------ 외부 라이브러리
-import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
+
+// ------------------------ Styled-Component
+import styled from 'styled-components';
 
 const SnsWrap = styled.div `
   width: 1084px;
@@ -112,6 +115,15 @@ const FooterOuter = styled.div `
     cursor: pointer;
   }
   }
+`
+const TopBtn = styled.button`
+  display: block;
+  width: 60px; height: 60px;
+  border: none;
+  background-image: url(${process.env.PUBLIC_URL + '/images/top_btn.png'});
+  background-color: unset;
+  position: fixed;
+  right: 30px; bottom: 30px;
 `
 
 
@@ -228,6 +240,7 @@ export default function Footer() {
         // setOpenQna 함수 호출해서 false 값을 돌려서 끔
       />
 
+      <TopBtn onClick={() => {window.scrollTo(0,0)}}/>
     </div>
   )
 }

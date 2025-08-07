@@ -13,6 +13,7 @@ const countSlice = createSlice({
     setCount: (state, action) => {
       state.value = action.payload;
     }
+
   },
 });
 

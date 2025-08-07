@@ -1,78 +1,84 @@
 import React, { useState } from 'react'
-import styled from 'styled-components';
 
+
+// ------------------------ src_image
 import XButton from '../images/x_button.png';
 
 
-export default function QnaModal({ open, close }) {
-  if (!open) return null;
+// ------------------------ Styled-Components
+import styled from 'styled-components';
 
-  const QnaWrap = styled.div`
-    width: 100%; height: 100vh;
-    position: fixed;
-    top: 0; left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+const QnaWrap = styled.div`
+  width: 100%; height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 
-    .qna_box{
-      width: 500px; height: 700px;
-      margin: 100px auto 0 auto;
-      background-color: #fafaf8;
-      border-radius: 30px;
-      .qna_title_box {
-        background-color: #FC4C02;
-        display: flex;
-        justify-content: space-between;
-        padding: 30px 20px 20px 20px;
-        border-radius: 30px 30px 0 0;
-        .title_box { 
-          width: 450px;
-          text-align: center;
-          padding-left: 20px;
-          font-size: 24px;
-          font-family: "Jua", sans-serif;
-          color: #fafaf8;
-        }
-        .x_btn_box {
-          width: 30px;
-          cursor: pointer;
-        }
+  .qna_box{
+    width: 500px; height: 700px;
+    margin: 100px auto 0 auto;
+    background-color: #fafaf8;
+    border-radius: 30px;
+    .qna_title_box {
+      background-color: #FC4C02;
+      display: flex;
+      justify-content: space-between;
+      padding: 30px 20px 20px 20px;
+      border-radius: 30px 30px 0 0;
+      .title_box { 
+        width: 450px;
+        text-align: center;
+        padding-left: 20px;
+        font-size: 24px;
+        font-family: "Jua", sans-serif;
+        color: #fafaf8;
       }
-      .qna_chat_box {
-        height: 470px;
-        margin: 20px;
-        padding: 10px;
-        > div {
-          width: 300px;
-          background-color: #ccc;
-          border-radius: 10px;
-          padding: 10px;
-          line-height: 20px;
-        }
-      }
-      .qna_input_box {
-        height: 90px;
-        margin: 20px;
-        display: flex;
-        textarea {
-          width: 380px; height: 90px;
-          margin-right: 10px;
-          border: 1px solid #ccc;
-          resize: none;
-          letter-spacing: -1px;
-          padding: 10px;
-        }
-        button {
-          width: 70px; height: 90px;
-          border: none;
-          background-color: #FC4C02;
-          color: white;
-          font-weight: bold;
-          border-radius: 10px;
-        }
+      .x_btn_box {
+        width: 30px;
+        cursor: pointer;
       }
     }
-  `
+    .qna_chat_box {
+      height: 470px;
+      margin: 20px;
+      padding: 10px;
+      > div {
+        width: 300px;
+        background-color: #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        line-height: 20px;
+      }
+    }
+    .qna_input_box {
+      height: 90px;
+      margin: 20px;
+      display: flex;
+      textarea {
+        width: 380px; height: 90px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        resize: none;
+        letter-spacing: -1px;
+        padding: 10px;
+      }
+      button {
+        width: 70px; height: 90px;
+        border: none;
+        background-color: #FC4C02;
+        color: white;
+        font-weight: bold;
+        border-radius: 10px;
+      }
+    }
+  }
+`
+
+
+export default function QnaModal({ open, close }) {
+
+  if (!open) return null;
 
   return (
     <div>

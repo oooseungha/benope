@@ -1,9 +1,6 @@
 // ------------------------ Router
-import { Routes, Route, Link, NavLink, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-
-// ------------------------ 외부 라이브러리
-import styled from 'styled-components';
 
 
 // ------------------------ CSS
@@ -34,7 +31,7 @@ import { products } from './data/subData';
 
 
 function App() {
-  const { id, category } = useParams();
+  
   const allData = {
   bests: bests,
   sales: sales,

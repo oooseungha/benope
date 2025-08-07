@@ -89,7 +89,7 @@ export const ArrowLeft = styled.button`
   width: 28px; height: 28px;
   cursor: ${({disabled}) => (disabled ? 'default' : 'pointer')};
   background-image: ${({disabled}) => disabled ? `url(${arrowLeftDisabled})` : `url(${arrowLeft})`};
-  background-size: conatin;
+  background-size: contain;
   border: none;
   &:hover {
     background-image: ${({disabled}) => disabled ? `url(${arrowLeftDisabled})` : `url(${arrowLeftHover})`};
@@ -99,7 +99,7 @@ export const ArrowLeft = styled.button`
 export const ArrowRight = styled.button`
   width: 28px; height: 28px;
   background-image: url(${arrowRight});
-  background-size: conatin;
+  background-size: contain;
   border: none;
   &:hover {
     background-image: url(${arrowRightHover})

@@ -7,65 +7,69 @@ import { NavLink } from 'react-router-dom';
 
 
 // ------------------------ 외부 라이브러리
-import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
+
+
+// ------------------------ Styled-Components
+import styled from 'styled-components'
+
+const HeaderAd = styled.div`
+  width: 100%; height: 40px;
+  background-color: #FC4C02;
+  color: #fafaf8;
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+`
+const HeaderWrap = styled.div`
+  width: 1048px;
+  margin: 0 auto;
+
+`
+const GnbTop = styled.ul`
+  float: right;
+  li {
+    font-size: 0;
+    float: left;
+    padding: 10px 0;
+    a {
+      font-size: 13px;
+      padding: 10px;
+      text-decoration: none;
+      color: inherit;
+      &:hover {
+        color: #FC4C02;
+        font-weight: bold;
+      }
+    }
+  }
+`
+const Gnb = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10px;
+  margin-bottom: 20px;
+  li {
+    .gnb_menu {
+      text-decoration: none;
+      color: inherit;
+      &:hover {
+        border-bottom: 2px solid #FC4C02;
+      }
+    }
+  }
+  input {
+    width: 300px; height: 30px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: -3px;
+    padding-left: 10px;
+  }
+`
 
 
 export default function Header() {
-  const HeaderAd = styled.div`
-    width: 100%; height: 40px;
-    background-color: #FC4C02;
-    color: #fafaf8;
-    text-align: center;
-    line-height: 40px;
-    font-size: 18px;
-  `
-  const HeaderWrap = styled.div`
-    width: 1048px;
-    margin: 0 auto;
-  
-  `
-  const GnbTop = styled.ul`
-    float: right;
-    li {
-      font-size: 0;
-      float: left;
-      padding: 10px 0;
-      a {
-        font-size: 13px;
-        padding: 10px;
-        text-decoration: none;
-        color: inherit;
-        &:hover {
-          color: #FC4C02;
-          font-weight: bold;
-        }
-      }
-    }
-  `
-  const Gnb = styled.ul`
-    display: flex;
-    justify-content: space-between;
-    gap: 0 10px;
-    margin-bottom: 20px;
-    li {
-      .gnb_menu {
-        text-decoration: none;
-        color: inherit;
-        &:hover {
-          border-bottom: 2px solid #FC4C02;
-        }
-      }
-    }
-    input {
-      width: 300px; height: 30px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-top: -3px;
-      padding-left: 10px;
-    }
-  `
 
   return (
     <div>

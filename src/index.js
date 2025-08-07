@@ -9,13 +9,11 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
-import { ScrollTo } from './components/ScrollTo';
 import store from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <ScrollTo />
+  <BrowserRouter basename='/benope'>
     <React.StrictMode>
       <Provider store={store}>
       <App />

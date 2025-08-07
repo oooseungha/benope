@@ -1,27 +1,31 @@
 import React, { useRef, useState } from 'react';
 
-import styled from 'styled-components';
+// ------------------------ Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 
+// ------------------------ Styled-Components
+import styled from 'styled-components';
+
+const VisualMainWrap = styled.div`
+  width: 1280px;
+  height: 500px;
+  margin: 0 auto;
+  cursor: pointer;
+  .swiper-pagination-bullet {
+    width: 15px; height: 15px;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #FC4C02;
+  }
+`
+
+
 export default function VisualMain() {
 
-  const VisualMainWrap = styled.div`
-    width: 1280px;
-    height: 500px;
-    margin: 0 auto;
-    cursor: pointer;
-    .swiper-pagination-bullet {
-      width: 15px; height: 15px;
-    }
-    .swiper-pagination-bullet-active {
-      background-color: #FC4C02;
-    }
-  `
 
   return (
     <VisualMainWrap>

@@ -12,8 +12,6 @@ import { addItem } from '../redux/cartSlice.js';
 
 
 // ------------------------ 외부 라이브러리
-import styled from 'styled-components';
-import { TitleDiv, CartButton, ContentBox } from '../components/StyledComponent.js'
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -31,6 +29,118 @@ import VisualMain from '../components/VisualMain';
 import Timer from '../components/Timer.js';
 
 
+// ------------------------ Styled-Components
+import styled from 'styled-components';
+import { TitleDiv, CartButton, ContentBox } from '../components/StyledComponent.js'
+
+const Button = styled.button`
+  display: block;
+  width: 250px;
+  margin: 50px auto 0 auto;
+  height: 50px;
+  letter-spacing: -1px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fafaf8;
+  &:hover {
+    color: #FC4C02;
+  }
+`
+const SaleOuter = styled.div`
+  width: 100%;
+  background-color: #eee;
+  padding: 70px 0 30px 0;
+  .sale_info {
+    width: 1048px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+    .saleTitle01, .saleTitle02 {
+      font-family: "Jua", sans-serif;
+      font-size: 32px;
+    }
+    .saleTitle02 {
+      padding-left: 10px;
+      font-size: 46px;
+      color: #FC4C02;
+    }
+    .saleText {
+      line-height: 10px;
+    }
+  }
+`
+const ReviewWrap = styled.div `
+  padding: 50px 0;
+  .review_box {
+    position: relative;
+  }
+  .review_title_box {
+    width: 200px; height: 25px;
+    margin-bottom: 10px;
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .review_btn {
+    width: 200px;
+    position: absolute;
+    left: 0; bottom: -90px;
+  }
+`
+
+const AboutWrap = styled.section`
+  width: 838px;
+  margin: 100px auto;
+  padding-bottom: 50px;
+  border-bottom: 3px solid #999;
+  .about_info_box {
+    width: 480px;
+    margin: 0 auto 50px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .about_info_img {
+      margin-right: 10px;
+    }
+    p {
+      font-size: 32px;
+      color: #FC4C02;
+      line-height: 30px;
+      font-weight: bold;
+    }
+    span {
+      line-height: 30px;
+    }
+  }
+  .about_box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    .about_img { 
+      margin-right: 10px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 16px;
+    }
+    .about_title {
+      width: 538px;
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 50px;
+      border-bottom: 3px solid #FC4C02;
+    }
+  }
+`
+
+
+
+
 export default function Home() {
 
   const [bestData] = useState(bests);
@@ -40,114 +150,6 @@ export default function Home() {
   const notify = () => toast("장바구니에 추가되었습니다.");
 
   const dispatch = useDispatch();
-
-
-  // @@@@ styled-components @@@@
-  const Button = styled.button`
-    display: block;
-    width: 250px;
-    margin: 50px auto 0 auto;
-    height: 50px;
-    letter-spacing: -1px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #fafaf8;
-    &:hover {
-      color: #FC4C02;
-    }
-  `
-  const SaleOuter = styled.div`
-    width: 100%;
-    background-color: #eee;
-    padding: 70px 0 30px 0;
-    .sale_info {
-      width: 1048px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-
-      .saleTitle01, .saleTitle02 {
-        font-family: "Jua", sans-serif;
-        font-size: 32px;
-      }
-      .saleTitle02 {
-        padding-left: 10px;
-        font-size: 46px;
-        color: #FC4C02;
-      }
-      .saleText {
-        line-height: 10px;
-      }
-    }
-  `
-  const ReviewWrap = styled.div `
-    padding: 50px 0;
-    .review_box {
-      position: relative;
-    }
-    .review_title_box {
-      width: 200px; height: 25px;
-      margin-bottom: 10px;
-      p {
-        font-size: 18px;
-        font-weight: 500;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-    }
-    .review_btn {
-      width: 200px;
-      position: absolute;
-      left: 0; bottom: -90px;
-    }
-  `
-
-  const AboutWrap = styled.section`
-    width: 838px;
-    margin: 100px auto;
-    padding-bottom: 50px;
-    border-bottom: 3px solid #999;
-    .about_info_box {
-      width: 480px;
-      margin: 0 auto 50px auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .about_info_img {
-        margin-right: 10px;
-      }
-      p {
-        font-size: 32px;
-        color: #FC4C02;
-        line-height: 30px;
-        font-weight: bold;
-      }
-      span {
-        line-height: 30px;
-      }
-    }
-    .about_box {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      .about_img { 
-        margin-right: 10px;
-      }
-      p {
-        font-size: 16px;
-        line-height: 16px;
-      }
-      .about_title {
-        width: 538px;
-        font-size: 32px;
-        font-weight: bold;
-        line-height: 50px;
-        border-bottom: 3px solid #FC4C02;
-      }
-    }
-  `
-
 
   return (
     <div>

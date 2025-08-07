@@ -18,16 +18,171 @@ import { bests, sales, reviews, products } from '../data/subData.js';
 
 
 // ------------------------ 외부 라이브러리
-import styled from 'styled-components';
-import { CartButton, ArrowLeft, ArrowRight, Xbtn } from '../components/StyledComponent.js'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 
+// ------------------------ Styled-Component
+import styled from 'styled-components';
+import { CartButton, ArrowLeft, ArrowRight, Xbtn } from '../components/StyledComponent.js'
 
+const DetailWrap = styled.div`
+  width: 1048px;
+  margin: 120px auto 80px auto;
+  display: flex;
+  gap: 10px;
+  .detail_img_box {
+  }
+  .detail_info_box {
+    .detail_info {
+      .detail_title {
+        width: 548px;
+        p {
+          font-family: "Jua", sans-serif;
+          font-size: 32px;
+          line-height: 30px;
+        }
+      }
+      .detail_percent {
+        font-family: "Jua", sans-serif;
+        font-size: 40px;
+        color: #FC4C02;
+      }
+    }
+    .detail_price_box {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      border-bottom: 1px solid #999;
+      .detail_price {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 48px;
+      }
+      .detail_before_price {
+        font-size: 26px;
+        color: #999;
+        text-decoration-line: line-through;
+        line-height: 48px;
+      }
+    }
+    .detail_option_box {
+      select {
+        width: 100%;
+        font-size: 14px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid #eee;
+        margin-bottom: 40px;
+      }
+      .detail_amount_box,
+      .detail_last_price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .detail_amount_box {
+        height: 50px;
+        font-size: 20px;
+        margin-bottom: 40px;
+        .flavor {
+          color: #666;
+          font-size: 16px;
+          width: 200px; height: 30px;
+          padding-top: 10px;
+        }
+        .detail_amount {
+          width: 150px; height: 50px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          p {
+          font-size: 28px;
+          font-weight: 500;
+          padding-top: 10px;
+          }
+        } // detail_amount_box
+      } // detail_option_box
+    }
+  }
+`
+
+const DetailTab = styled.ul`
+  width: 1048px;
+  margin: 20px auto;
+  display: flex;
+  background-color: #eee;
+  li {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    cursor: pointer;
+    box-sizing: border-box;
+    p {
+      font-size: 18px;
+      line-height: 70px;
+      padding-top: 15px;    
+    }
+    &:hover {
+      font-weight: bold;
+    }
+  }
+  li:first-child {
+    margin-left: -30px;
+  }
+  li:nth-child(2) {
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+  }
+`;
+
+
+const DetailContent = styled.div`
+  width: 1048px;
+  margin: 0 auto;
+`
+
+const DetailReview = styled.div`
+  width: 1048px;
+  margin: 0 auto;
+  padding-top: 30px;
+  li {
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    position: relative;
+    margin-left: -30px;
+    margin: 0 0 30px -30px;
+    .review_img {
+      width: 400px; height: 250px;
+      background-color: #ccc;
+      float: left;
+      margin: 0 10px 30px 0;
+    }
+    .review_text_box {
+      .review_title {
+        font-size: 28px;
+        font-weight: 500;
+      }
+      .review_subtext {
+        color: #666;
+      }
+      .review_date {
+        font-size: 14px;
+        color: #999;
+        float: right;
+        position: absolute;
+        right: 30px;
+        bottom: 10px;
+      }
+    }
+  }
+`
 
 export default function Detail({ allData }) {
-
 
   // toast_popup
   const notify = () => toast("장바구니에 추가되었습니다.");
@@ -48,8 +203,8 @@ export default function Detail({ allData }) {
 
 
   // option_box_event
-  const optionCount = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
+  const optionCount = useSelector((state) => state.counter.value);
   const [flavor, setFlavor] = useState('');
   const [selectOption, setSelectOption] = useState([]);
   const changeFlavor = (e) => {
@@ -70,9 +225,7 @@ export default function Detail({ allData }) {
     setFlavor(newFlavor);
   }
 
-
   const totalPrice = optionCount * detailItem.price;
-
 
   // detail 수량 초기화
   useEffect(() => {
@@ -80,170 +233,11 @@ export default function Detail({ allData }) {
     dispatch(setCount(1));
   }, [id]);
 
-
   // detail_tab_event
   const [clickTab, setClickTab] = useState('info');
   // 값을 'info'로 기본 설정해서 info가 처음부터 보이고, review가 들어올 때만 review 보이게
   const [openQna, setOpenQna] = useState(false);
   // false: 모달 닫힌 상태가 기본 상태
-
-
-  // @@@@ styled-components @@@@
-  const DetailWrap = styled.div`
-    width: 1048px;
-    margin: 120px auto 80px auto;
-    display: flex;
-    gap: 10px;
-    .detail_img_box {
-    }
-    .detail_info_box {
-      .detail_info {
-        .detail_title {
-          width: 548px;
-          p {
-            font-family: "Jua", sans-serif;
-            font-size: 32px;
-            line-height: 30px;
-          }
-        }
-        .detail_percent {
-          font-family: "Jua", sans-serif;
-          font-size: 40px;
-          color: #FC4C02;
-        }
-      }
-      .detail_price_box {
-        display: flex;
-        gap: 10px;
-        margin: 20px 0;
-        border-bottom: 1px solid #999;
-        .detail_price {
-          font-size: 36px;
-          font-weight: bold;
-          line-height: 48px;
-        }
-        .detail_before_price {
-          font-size: 26px;
-          color: #999;
-          text-decoration-line: line-through;
-          line-height: 48px;
-        }
-      }
-      .detail_option_box {
-        select {
-          width: 100%;
-          font-size: 14px;
-          padding: 5px 10px;
-          border-radius: 5px;
-          border: 1px solid #eee;
-          margin-bottom: 40px;
-        }
-        .detail_amount_box,
-        .detail_last_price {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .detail_amount_box {
-          height: 50px;
-          font-size: 20px;
-          margin-bottom: 40px;
-          .flavor {
-            color: #666;
-            font-size: 16px;
-            width: 200px; height: 30px;
-            padding-top: 10px;
-          }
-          .detail_amount {
-            width: 150px; height: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            p {
-            font-size: 28px;
-            font-weight: 500;
-            padding-top: 10px;
-            }
-          } // detail_amount_box
-        } // detail_option_box
-      }
-    }
-  `
-
-  const DetailTab = styled.ul`
-    width: 1048px;
-    margin: 20px auto;
-    display: flex;
-    background-color: #eee;
-    li {
-      flex: 1;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 70px;
-      cursor: pointer;
-      box-sizing: border-box;
-      p {
-        font-size: 18px;
-        line-height: 70px;
-        padding-top: 15px;    
-      }
-      &:hover {
-        font-weight: bold;
-      }
-    }
-    li:first-child {
-      margin-left: -30px;
-    }
-    li:nth-child(2) {
-      border-left: 1px solid #999;
-      border-right: 1px solid #999;
-    }
-  `;
-
-
-  const DetailContent = styled.div`
-    width: 1048px;
-    margin: 0 auto;
-  `
-
-  const DetailReview = styled.div`
-    width: 1048px;
-    margin: 0 auto;
-    padding-top: 30px;
-    li {
-      border-bottom: 1px solid #ccc;
-      overflow: hidden;
-      position: relative;
-      margin-left: -30px;
-      margin: 0 0 30px -30px;
-      .review_img {
-        width: 400px; height: 250px;
-        background-color: #ccc;
-        float: left;
-        margin: 0 10px 30px 0;
-      }
-      .review_text_box {
-        .review_title {
-          font-size: 28px;
-          font-weight: 500;
-        }
-        .review_subtext {
-          color: #666;
-        }
-        .review_date {
-          font-size: 14px;
-          color: #999;
-          float: right;
-          position: absolute;
-          right: 30px;
-          bottom: 10px;
-        }
-      }
-    }
-  `
 
 
   return (
@@ -284,7 +278,7 @@ export default function Detail({ allData }) {
 
             <h4>옵션</h4>
             {
-              selectOption === '' ?
+              selectOption == '' ?
                 <p
                   style={{
                     width: '200px',
@@ -296,6 +290,7 @@ export default function Detail({ allData }) {
                 >선택된 옵션이 없습니다.</p> :
                 <ul>
                   {selectOption.map((option, index) => {
+                    if (option.flavor === '맛을 선택해 주세요!') return null;
                     return (
                       <li key={index}>
                         <div className='detail_amount_box'>
@@ -417,10 +412,8 @@ export default function Detail({ allData }) {
         open={openQna}
         // open으로 열리면 openQna값이 true 됨
         close={() => setOpenQna(false)}
-      // setOpenQna 함수 호출해서 false 값을 돌려서 끔
+        // setOpenQna 함수 호출해서 false 값을 돌려서 끔
       />
-
-
 
     </div>
   )
