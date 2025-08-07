@@ -143,7 +143,9 @@ const DetailTab = styled.ul`
 
 const DetailContent = styled.div`
   width: 1048px;
-  margin: 0 auto;
+  margin: 0 auto 150px auto;
+  padding-bottom: 150px;
+  border-bottom: 1px solid #ccc;
 `
 
 const DetailReview = styled.div`

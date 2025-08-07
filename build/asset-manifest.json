@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/benope/static/css/main.1e9233ed.css",
-    "main.js": "/benope/static/js/main.1d15350e.js",
+    "main.js": "/benope/static/js/main.0418339d.js",
     "static/js/453.ee5de88d.chunk.js": "/benope/static/js/453.ee5de88d.chunk.js",
     "index.html": "/benope/index.html",
     "main.1e9233ed.css.map": "/benope/static/css/main.1e9233ed.css.map",
-    "main.1d15350e.js.map": "/benope/static/js/main.1d15350e.js.map",
+    "main.0418339d.js.map": "/benope/static/js/main.0418339d.js.map",
     "453.ee5de88d.chunk.js.map": "/benope/static/js/453.ee5de88d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1e9233ed.css",
-    "static/js/main.1d15350e.js"
+    "static/js/main.0418339d.js"
   ]
 }

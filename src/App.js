@@ -2,7 +2,6 @@
 import { Routes, Route } from 'react-router-dom';
 
 
-
 // ------------------------ CSS
 import './App.css';
 
@@ -17,11 +16,13 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Sub from './pages/Sub';
 import SubAll from './pages/SubPages/SubAll';
-import SubPopular from './pages/SubPages/SubPopular';
 import SubShake from './pages/SubPages/SubShake';
 import SubProtein from './pages/SubPages/SubProtein';
 import SubBakery from './pages/SubPages/SubBakery';
-import SubSnack from './pages/SubPages/SubSnack';
+import SubEvent from './pages/SubPages/SubEvent';
+import NowEvent from './pages/SubPages/EventPages/NowEvent';
+import PastEvent from './pages/SubPages/EventPages/PastEvent';
+import SubBrandInfo from './pages/SubPages/SubBrandInfo';
 import Detail from './pages/Detail';
 
 
@@ -46,12 +47,15 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='cart' element={<Cart />} />
         <Route path='/sub/*' element={<Sub />}>
-          <Route path='all' element={<SubAll />}></Route>
-          <Route path='popular' element={<SubPopular />}></Route>
-          <Route path='shake' element={<SubShake />}></Route>
-          <Route path='protein' element={<SubProtein />}></Route>
-          <Route path='bakery' element={<SubBakery />}></Route>
-          <Route path='snack' element={<SubSnack />}></Route>
+          <Route path='all' element={<SubAll />} />
+          <Route path='shake' element={<SubShake />} />
+          <Route path='protein' element={<SubProtein />} />
+          <Route path='bakery' element={<SubBakery />} />
+          <Route path='event' element={<SubEvent />}>
+            <Route path='now' element={<NowEvent />} />
+            <Route path='past' element={<PastEvent />} />
+          </Route>
+          <Route path='info/*' element={<SubBrandInfo />} />
         </Route>
         <Route
           path='/details/:category/:id'

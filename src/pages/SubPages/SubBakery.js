@@ -27,7 +27,6 @@ export default function SubBakery() {
 
   const [subBakery] = useState(products.filter(item => item.category.includes('bakery')));
 
-  
   const dispatch = useDispatch();
   const notify = () => toast("장바구니에 추가되었습니다.");
 
@@ -35,7 +34,7 @@ export default function SubBakery() {
     <div>
       <Container style={{width: '1048px', margin: '100px auto'}}>
         <TitleDiv>
-          <p>베이커리</p>
+          <p>베이커리&제로스낵</p>
         </TitleDiv>
         <Row
           style={{display: 'flex'}}

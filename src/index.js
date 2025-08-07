@@ -6,6 +6,7 @@ import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import reportWebVitals from './reportWebVitals';
 
+import { ScrollTo } from './components/ScrollTo';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
@@ -16,6 +17,7 @@ root.render(
   <BrowserRouter basename='/benope'>
     <React.StrictMode>
       <Provider store={store}>
+      <ScrollTo />
       <App />
       <ToastContainer
         position="bottom-center"

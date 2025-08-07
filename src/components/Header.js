@@ -6,6 +6,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 
+// ------------------------ Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { addItem, deleteItem, addCount, subCount } from '../redux/cartSlice';
+
+
 // ------------------------ 외부 라이브러리
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
@@ -42,6 +47,16 @@ const GnbTop = styled.ul`
         color: #FC4C02;
         font-weight: bold;
       }
+    .cart_count {
+      display: inline-block;
+      width: 25px; height: 20px;
+      color: white;
+      background-color: #666;
+      text-align: center;
+      line-height: 20px;
+      border-radius: 7px;
+      font-weight: 500;
+      }
     }
   }
 `
@@ -71,17 +86,28 @@ const Gnb = styled.ul`
 
 export default function Header() {
 
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const totalCount = state.cart.reduce((sum, item) => sum + item.count, 0)
+
   return (
     <div>
       <HeaderAd>
         <p>가입 즉시 2,000원 할인 쿠폰 지급! 🎁</p>
       </HeaderAd>
       <HeaderWrap>
+
         {/* ----- gnb_top ----- */}
         <GnbTop>
           <li><NavLink to='/'><FontAwesomeIcon icon={faHouse} /></NavLink></li>
           <li><a href="#!">로그인</a></li>
-          <li><NavLink to='cart'>장바구니</NavLink></li>
+          <li><NavLink to='cart'>
+               <span>장바구니 </span>
+               &nbsp;
+               {
+                totalCount === 0 ? '' : <span className='cart_count'>{totalCount}</span>
+               }
+            </NavLink></li>
           <li><a href="#!">내 정보</a></li>
         </GnbTop>
 
@@ -97,11 +123,11 @@ export default function Header() {
         {/* ----- gnb ----- */}
         <Gnb>
           <li><NavLink to='/sub/all' className='gnb_menu'>전체보기</NavLink></li>
-          <li><NavLink to='/sub/popular' className='gnb_menu'>인기상품</NavLink></li>
           <li><NavLink to='/sub/shake' className='gnb_menu'>단백질쉐이크</NavLink></li>
           <li><NavLink to='/sub/protein' className='gnb_menu'>단백질바</NavLink></li>
-          <li><NavLink to='/sub/bakery' className='gnb_menu'>베이커리</NavLink></li>
-          <li><NavLink to='/sub/snack' className='gnb_menu'>프로틴&제로스낵</NavLink></li>
+          <li><NavLink to='/sub/bakery' className='gnb_menu'>베이커리&제로스낵</NavLink></li>
+          <li><NavLink to='/sub/event/now' className='gnb_menu'>이벤트</NavLink></li>
+          <li><NavLink to='/sub/info' className='gnb_menu'>브랜드 소개</NavLink></li>
           <li><input type="text" /></li>
         </Gnb>
       </HeaderWrap>

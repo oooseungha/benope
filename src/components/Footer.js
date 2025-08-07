@@ -2,6 +2,10 @@
 import React, { useState }  from 'react';
 
 
+// ------------------------ Router
+import { Link } from 'react-router-dom';
+
+
 // ------------------------ Components
 import QnaModal from '../components/QnaModal.js';
 
@@ -16,7 +20,7 @@ import styled from 'styled-components';
 
 const SnsWrap = styled.div `
   width: 1084px;
-  margin: 0 auto 50px auto;
+  margin: 150px auto 50px auto;
   text-align: center;
   .sns_span {
     color: #FC4C02;
@@ -179,6 +183,7 @@ export default function Footer() {
             <div className='footer_bored_box'>
               <FooterTitleBox>
                 <span className='footer_title'>커뮤니티</span>
+                <Link>더보기</Link>
               </FooterTitleBox>
               <div className='footer_bored'>
                 <div>

@@ -113,3 +113,35 @@ export const Xbtn = styled.button`
   background-color: unset;
   border: none;
 `
+
+
+export const EventWrap = styled.div`
+  .event_box {
+    position: relative;
+    margin-bottom: 30px;
+    cursor: pointer;
+    .event_img {
+      width: 100%; height: 350px;
+      border-radius: 30px;
+      background-size: cover;
+      background-position: center;
+    }
+    .event_info {
+      width: 100%; height: 350px;
+      border-radius: 30px;
+      position: absolute;
+      top: 0; left: 0;
+      color: white;
+      font-weight: 500;
+      font-size: 0;
+      padding-top: 130px;
+      p {
+        text-align: center;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        font-size: 24px;
+      }
+    }
+  }
+`
