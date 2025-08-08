@@ -183,7 +183,6 @@ export default function Footer() {
             <div className='footer_bored_box'>
               <FooterTitleBox>
                 <span className='footer_title'>커뮤니티</span>
-                <Link>더보기</Link>
               </FooterTitleBox>
               <div className='footer_bored'>
                 <div>
