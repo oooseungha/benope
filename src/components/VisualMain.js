@@ -1,6 +1,7 @@
 // ------------------------ React
 import React, { useRef, useState } from 'react';
 
+// ------------------------ Router
 import { Link } from 'react-router-dom';
 
 // ------------------------ Swiper
@@ -8,7 +9,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
 
 // ------------------------ Styled-Components
 import styled from 'styled-components';

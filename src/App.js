@@ -22,13 +22,15 @@ import SubBakery from './pages/SubPages/SubBakery';
 import SubEvent from './pages/SubPages/SubEvent';
 import NowEvent from './pages/SubPages/EventPages/NowEvent';
 import PastEvent from './pages/SubPages/EventPages/PastEvent';
+import EventContent from './pages/SubPages/EventPages/EventContent';
 import SubBrandInfo from './pages/SubPages/SubBrandInfo';
 import Detail from './pages/Detail';
 
 
 // ------------------------ Data
-import { bests, sales, mainReviews } from './data/mainData'
+import { bests, sales, mainReviews } from './data/mainData';
 import { products } from './data/subData';
+import { event } from './pages/SubPages/EventPages/eventData';
 
 
 function App() {
@@ -54,6 +56,7 @@ function App() {
           <Route path='event' element={<SubEvent />}>
             <Route path='now' element={<NowEvent />} />
             <Route path='past' element={<PastEvent />} />
+            <Route path=':eventId' element={<EventContent eventData={event} />} />
           </Route>
           <Route path='info/*' element={<SubBrandInfo />} />
         </Route>

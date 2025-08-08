@@ -135,6 +135,7 @@ export const EventWrap = styled.div`
       font-weight: 500;
       font-size: 0;
       padding-top: 130px;
+      border: 1px solid #eee;
       p {
         text-align: center;
       }

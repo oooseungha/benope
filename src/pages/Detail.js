@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 
+
 // ------------------------ Styled-Component
 import styled from 'styled-components';
 import { CartButton, ArrowLeft, ArrowRight, Xbtn } from '../components/StyledComponent.js'

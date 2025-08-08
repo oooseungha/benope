@@ -22,7 +22,7 @@ const EventTab = styled.ul`
   }
 `
 
-const EventContent = styled.li`
+const EventList = styled.li`
   width: 110px; height: 40px;
   font-size: 20px;
   line-height: 40px;
@@ -54,12 +54,12 @@ export default function SubEvent() {
       </TitleDiv>
 
       <EventTab>
-        <EventContent active={path.includes('/sub/event/now')}>
+        <EventList active={path.includes('/sub/event/now')}>
           <Link to='/sub/event/now'><p>진행 이벤트</p></Link>
-        </EventContent>
-        <EventContent active={path.includes('/sub/event/past')}>
+        </EventList>
+        <EventList active={path.includes('/sub/event/past')}>
           <Link to='/sub/event/past'><p>종료 이벤트</p></Link>
-        </EventContent>
+        </EventList>
       </EventTab>
 
       <Outlet />

@@ -1,6 +1,9 @@
 // ------------------------ React
 import React, { useState } from 'react'
 
+// ------------------------ Router
+import { Link } from 'react-router-dom';
+
 // ------------------------ Data
 import { event } from './eventData';
 
@@ -19,17 +22,20 @@ export default function NowEvent() {
         {
           nowEvent.map((event, index) => {
             return (
-              <div className='event_box'>
-                <div className='event_img'
-                  style={{
-                    backgroundImage: `url(${event.eventThumbnail})`
-                  }}
-                />
-                <div className='event_info'>
-                  <p>{event.eventTitle}</p>
-                  <p>{event.eventDate}</p>
+
+              <Link to={`/sub/event/${event.eventId}`}>
+                <div className='event_box'>
+                  <div className='event_img'
+                    style={{
+                      backgroundImage: `url(${event.eventThumbnail})`
+                    }}
+                  />
+                  <div className='event_info'>
+                    <p>{event.eventTitle}</p>
+                    <p>{event.eventDate}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
 
             )
           })
