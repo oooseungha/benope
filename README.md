@@ -62,7 +62,7 @@ function App() {
   );
 }
 ```
-<br/
+<br/>
 
 ## (2) 세일 기한 Timer 구현
 - 할인 문구와 <Timer> 컴포넌트를 렌더링, saleTime props로 종료 날짜 전달
