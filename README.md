@@ -13,16 +13,16 @@
 <br/><br/>
 
 ### 🛠️ 코드 리뷰
-(1) 페이지 간 이동을 위한 라우팅 구조와 중첩/동적 라우트 설계
-- 주요 페이지(Home, Cart, Sub 등)와 세부 페이지를 라우트로 구성
+(1) 페이지 간 이동과 데이터 구조 요약
+- 주요 페이지(Home, Cart, Sub 등)와 세부 페이지를 Route로 구성
 - Sub 페이지 안에서 Outlet을 통한 중첩 라우팅 적용 (shake, protein, bakery, event 등)
-- :eventId, :category/:id 등 동적 라우트 파라미터를 활용하여 디테일 페이지 구현
+- :eventId, :category/:id 등 파라미터를 사용해 상세 페이지 구현
+- App 컴포넌트에서 전체 페이지 공통 데이터(bests, sales, reviews, products)를 allData 객체로 묶어 하위 컴포넌트에 전달
 
 ```javascript
+
 // App.js
 function App() {
-
-  // 전체 페이지에서 공통으로 사용할 데이터 묶음
   const allData = {
   bests: bests,
   sales: sales,
@@ -32,23 +32,15 @@ function App() {
 
   return (
     <div className="App">
-
-      {/* 공통 헤더 */}
       <Header />
-
-      {/* 라우팅 설정 */}
       <Routes>
-        {/* 메인 페이지 */}
         <Route path='/' element={<Home />} />
-        {/* 장바구니 페이지 */}
         <Route path='cart' element={<Cart />} />
-        {/* 서브 메뉴 */}
         <Route path='/sub/*' element={<Sub />}>
           <Route path='all' element={<SubAll />} />
           <Route path='shake' element={<SubShake />} />
           <Route path='protein' element={<SubProtein />} />
           <Route path='bakery' element={<SubBakery />} />
-          {/* 서브 이벤트 카테고리(중첩 라우팅) */}
           <Route path='event' element={<SubEvent />}>
             <Route path='now' element={<NowEvent />} />
             <Route path='past' element={<PastEvent />} />
@@ -56,8 +48,6 @@ function App() {
           </Route>
           <Route path='info/*' element={<SubBrandInfo />} />
         </Route>
-
-        {/* 상세 페이지 (카테고리 + id 기반) */}
         <Route
           path='/details/:category/:id'
           element={
@@ -67,8 +57,6 @@ function App() {
           }
         />
       </Routes>
-
-      {/* 공통 푸터 */}
       <Footer />
     </div>
   );
@@ -76,9 +64,10 @@ function App() {
 ```
 <br/><br/>
 
-(2) Home Component에 세일 기한 Timer 구현
-- 세일 종료 시점 계산 및 실시간 남은 시간 표시
-- useEffect와 setInterval을 활용한 타이머 구현
+(2) 세일 기한 Timer 구현
+- 할인 문구와 <Timer> 컴포넌트를 렌더링, saleTime props로 종료 날짜 전달
+- TimeCountdown 함수 활용하여 현재 시간과 종료 시간을 비교해 남은 시간 계산
+- useState로 남은 시간 상태 관리, useEffect에서 1초마다 setInterval로 남은 시간 갱신하며 UI 업데이트
 
 ```javascript
 
@@ -88,49 +77,40 @@ function App() {
       <p>최대 35% 할인 세트 상품 </p>
     </TitleDiv>
     <Timer className='timer' saleTime={"2025-12-31T23:59:59"} />
-    {/* saleTime={"세일 마감 기한"} */}
-
   </div>
 ```
 
 ```javascript
 
 // Components > Timer.js
+export default function Timer({ saleTime }) {
 
-export default function Timer({ saleTime }) { // props로 saleTime(세일 종료 시간)을 받음
-
-  // ✔ 타이머 함수 생성
   const TimeCountdown = () => {
 
-    // 세일 종료 시각 - 현재 시각 = 남은 시간(밀리초 단위)
     const difference = new Date(saleTime) - new Date();
     let timeLeft = {};
 
-    if (difference > 0) { // 종료 전이라면,
+    if (difference > 0) {
       timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)), // 일(day) 계산
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24), // 시(hour) 계산
-        minutes: Math.floor((difference / (1000 * 60)) % 60), // 분(minunte) 계산
-        seconds: Math.floor((difference / 1000) % 60), // 초(second) 계산
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / (1000 * 60)) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
       };
     }
-    return timeLeft; // 남은 시간을 객체로 반환
+    return timeLeft;
   };
 
-  // 남은 시간 관리
   const [timeLeft, setTimeLeft] = useState(TimeCountdown());
 
-  // 1초마다 남은 시간 갱신
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(TimeCountdown());
     }, 1000);
 
-    // interval 정리
     return () => clearInterval(timer);
   }, [saleTime]);
 
-  // 남은 시간이 있으면 카운트다운, 없으면 기간 종료 메시지 출력
   return (
     <TimerBox>
       {timeLeft.days !== undefined ? (
@@ -144,14 +124,7 @@ export default function Timer({ saleTime }) { // props로 saleTime(세일 종료
   )
 }
 ```
-![Image](https://github.com/user-attachments/assets/025bba2c-d294-49da-b9dd-61ed64012a92)
 <br/><br/>
-
-### 🔍 코드 리뷰 요약
-- React Router를 활용하여 메인, 서브, 상세 페이지 간 원활한 이동 구현
-- Home Component에 세일 기한 Timer를 적용하여 실시간 카운트다운 표시 및 종료 메시지 처리
-- useEffect와 setInterval을 사용한 실시간 데이터 갱신 및 메모리 관리 경험 확보
-<br><br/>
 
 ### 🔹 학습 포인트
 - 사용자 흐름 최적화 및 중첩/동적 라우트 경험 확보
