@@ -13,7 +13,7 @@
 <br/><br/>
 
 ### 🛠️ 코드 리뷰
-(1) 페이지 간 이동과 데이터 구조 요약
+## (1) 페이지 간 이동과 데이터 구조 요약
 - 주요 페이지(Home, Cart, Sub 등)와 세부 페이지를 Route로 구성
 - Sub 페이지 안에서 Outlet을 통한 중첩 라우팅 적용 (shake, protein, bakery, event 등)
 - :eventId, :category/:id 등 파라미터를 사용해 상세 페이지 구현
@@ -62,9 +62,9 @@ function App() {
   );
 }
 ```
-<br/><br/>
+<br/
 
-(2) 세일 기한 Timer 구현
+## (2) 세일 기한 Timer 구현
 - 할인 문구와 <Timer> 컴포넌트를 렌더링, saleTime props로 종료 날짜 전달
 - TimeCountdown 함수 활용하여 현재 시간과 종료 시간을 비교해 남은 시간 계산
 - useState로 남은 시간 상태 관리, useEffect에서 1초마다 setInterval로 남은 시간 갱신하며 UI 업데이트
