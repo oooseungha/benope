@@ -65,6 +65,8 @@ function App() {
 <br/>
 
 ## (2) 세일 기한 Timer 구현
+![Image](https://github.com/user-attachments/assets/e883f4dd-3ae0-409e-8af5-f100f697bc6c)
+
 - 할인 문구와 <Timer> 컴포넌트를 렌더링, saleTime props로 종료 날짜 전달
 - TimeCountdown 함수 활용하여 현재 시간과 종료 시간을 비교해 남은 시간 계산
 - useState로 남은 시간 상태 관리, useEffect에서 1초마다 setInterval로 남은 시간 갱신하며 UI 업데이트
